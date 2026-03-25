@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chukwuemeka Omokwe — Software Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0a0f;
+      --surface:   #111118;
+      --border:    #1e1e2e;
+      --accent:    #e8ff47;
+      --accent2:   #47c8ff;
+      --text:      #e8e8f0;
+      --muted:     #6b6b80;
+      --card:      #13131c;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.5;
+    }
+
+    .glow-orb {
+      position: fixed; border-radius: 50%; filter: blur(120px);
+      pointer-events: none; z-index: 0;
+      animation: drift 14s ease-in-out infinite alternate;
+    }
+    .glow-orb.one  { width: 500px; height: 500px; background: rgba(232,255,71,0.06); top: -100px; right: -100px; }
+    .glow-orb.two  { width: 400px; height: 400px; background: rgba(71,200,255,0.05); bottom: 10%; left: -80px; animation-delay: -7s; }
+    @keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(30px,20px) scale(1.05); } }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 20px 0;
+      background: rgba(10,10,15,0.75); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      animation: fadeDown 0.6s ease both;
+    }
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:translateY(0); } }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; }
+    .nav-logo {
+      font-family:'Syne',sans-serif; font-weight:800; font-size:1.15rem;
+      color:var(--accent); letter-spacing:-0.02em; text-decoration:none;
+    }
+    .nav-links { display:flex; gap:32px; list-style:none; }
+    .nav-links a {
+      font-family:'DM Mono',monospace; font-size:0.78rem; color:var(--muted);
+      text-decoration:none; letter-spacing:0.06em; text-transform:uppercase; transition:color 0.2s;
+    }
+    .nav-links a:hover { color:var(--text); }
+
+    /* HERO */
+    .hero { min-height:100vh; display:flex; align-items:center; padding:120px 0 80px; }
+    .hero-inner { display:grid; grid-template-columns:1fr auto; gap:64px; align-items:center; }
+
+    .hero-tag {
+      display:inline-flex; align-items:center; gap:8px;
+      font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--accent);
+      letter-spacing:0.12em; text-transform:uppercase;
+      background:rgba(232,255,71,0.08); border:1px solid rgba(232,255,71,0.2);
+      padding:6px 14px; border-radius:100px; margin-bottom:28px;
+      animation:fadeUp 0.7s 0.1s ease both;
+    }
+    .hero-tag::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); animation:pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .hero h1 {
+      font-family:'Syne',sans-serif; font-weight:800;
+      font-size:clamp(2.4rem,5.5vw,4.6rem);
+      line-height:1.05; letter-spacing:-0.03em;
+      animation:fadeUp 0.7s 0.2s ease both;
+    }
+    .hero h1 .name { color:var(--accent); }
+    .hero h1 .line2 { display:block; color:var(--muted); font-weight:600; font-size:0.55em; margin-top:10px; }
+
+    .hero-desc {
+      margin-top:24px; max-width:520px; color:var(--muted);
+      font-size:1.05rem; line-height:1.75;
+      animation:fadeUp 0.7s 0.35s ease both;
+    }
+    .hero-cta { margin-top:44px; display:flex; gap:16px; flex-wrap:wrap; animation:fadeUp 0.7s 0.45s ease both; }
+    .btn {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:13px 28px; border-radius:8px;
+      font-family:'DM Mono',monospace; font-size:0.8rem;
+      letter-spacing:0.04em; text-decoration:none; cursor:pointer;
+      transition:transform 0.18s, box-shadow 0.18s;
+    }
+    .btn:hover { transform:translateY(-2px); }
+    .btn-primary { background:var(--accent); color:#0a0a0f; }
+    .btn-primary:hover { box-shadow:0 8px 30px rgba(232,255,71,0.25); }
+    .btn-ghost { border:1px solid var(--border); color:var(--muted); background:transparent; }
+    .btn-ghost:hover { border-color:var(--muted); color:var(--text); }
+
+    .hero-stats { display:flex; flex-direction:column; gap:24px; animation:fadeUp 0.7s 0.55s ease both; }
+    .stat {
+      text-align:right; padding:20px 24px;
+      background:var(--card); border:1px solid var(--border); border-radius:12px;
+    }
+    .stat-num { font-family:'Syne',sans-serif; font-size:2rem; font-weight:800; color:var(--accent); }
+    .stat-label { font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+
+    /* SECTIONS */
+    section { padding:100px 0; }
+    .section-label {
+      display:flex; align-items:center; gap:12px;
+      font-family:'DM Mono',monospace; font-size:0.72rem;
+      color:var(--accent); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:14px;
+    }
+    .section-label::after { content:''; flex:1; height:1px; background:var(--border); }
+    h2.section-title {
+      font-family:'Syne',sans-serif; font-size:clamp(1.8rem,3.5vw,2.6rem);
+      font-weight:700; letter-spacing:-0.02em; margin-bottom:48px;
+    }
+
+    /* SKILLS */
+    #skills { background:var(--surface); }
+    .skills-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; }
+    .skill-card {
+      background:var(--card); border:1px solid var(--border); border-radius:12px;
+      padding:28px; transition:border-color 0.2s, transform 0.2s;
+    }
+    .skill-card:hover { border-color:rgba(232,255,71,0.3); transform:translateY(-3px); }
+    .skill-card-icon { font-size:1.6rem; margin-bottom:14px; }
+    .skill-card-title { font-family:'Syne',sans-serif; font-weight:700; font-size:1rem; margin-bottom:14px; }
+    .skill-tags { display:flex; flex-wrap:wrap; gap:8px; }
+    .tag {
+      font-family:'DM Mono',monospace; font-size:0.72rem;
+      background:rgba(255,255,255,0.05); border:1px solid var(--border);
+      padding:4px 10px; border-radius:6px; color:var(--muted);
+    }
+
+    /* EXPERIENCE */
+    .timeline { position:relative; padding-left:28px; }
+    .timeline::before {
+      content:''; position:absolute; left:0; top:8px; bottom:0;
+      width:1px; background:var(--border);
+    }
+    .timeline-item { position:relative; margin-bottom:52px; }
+    .timeline-item:last-child { margin-bottom:0; }
+    .timeline-item::before {
+      content:''; position:absolute; left:-34px; top:8px;
+      width:12px; height:12px; border-radius:50%;
+      background:var(--bg); border:2px solid var(--accent);
+    }
+    .timeline-meta { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:8px; }
+    .timeline-co { font-family:'Syne',sans-serif; font-weight:700; font-size:1.05rem; }
+    .timeline-date {
+      font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--muted);
+      background:var(--card); border:1px solid var(--border); padding:3px 10px; border-radius:100px;
+    }
+    .timeline-role { font-family:'DM Mono',monospace; font-size:0.82rem; color:var(--accent); margin-bottom:12px; }
+    .timeline-desc { color:var(--muted); font-size:0.95rem; line-height:1.7; }
+    .timeline-desc li { margin-left:20px; margin-bottom:6px; }
+
+    /* PROJECTS */
+    #projects { background:var(--surface); }
+    .projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:20px; }
+    .project-card {
+      background:var(--card); border:1px solid var(--border); border-radius:14px;
+      padding:28px; display:flex; flex-direction:column; gap:14px;
+      transition:border-color 0.2s, transform 0.2s;
+      position:relative; overflow:hidden;
+    }
+    .project-card::after {
+      content:''; position:absolute; top:0; right:0; width:80px; height:80px;
+      background:radial-gradient(circle at top right,rgba(232,255,71,0.06),transparent 70%);
+    }
+    .project-card:hover { border-color:rgba(232,255,71,0.35); transform:translateY(-4px); }
+    .project-num { font-family:'DM Mono',monospace; font-size:0.7rem; color:rgba(232,255,71,0.4); letter-spacing:0.1em; }
+    .project-title { font-family:'Syne',sans-serif; font-weight:700; font-size:1.1rem; }
+    .project-desc { color:var(--muted); font-size:0.92rem; line-height:1.65; flex:1; }
+    .project-stack { display:flex; flex-wrap:wrap; gap:6px; }
+    .project-link {
+      display:inline-flex; align-items:center; gap:6px;
+      font-family:'DM Mono',monospace; font-size:0.75rem;
+      color:var(--accent); text-decoration:none; margin-top:4px; transition:gap 0.15s;
+    }
+    .project-link:hover { gap:10px; }
+
+    /* EDUCATION */
+    .edu-card {
+      background:var(--card); border:1px solid var(--border); border-radius:14px;
+      padding:36px; display:grid; grid-template-columns:1fr auto; gap:24px; align-items:start;
+    }
+    .edu-school { font-family:'Syne',sans-serif; font-weight:800; font-size:1.4rem; margin-bottom:6px; }
+    .edu-degree { color:var(--accent); font-family:'DM Mono',monospace; font-size:0.82rem; margin-bottom:16px; }
+    .edu-courses { display:flex; flex-wrap:wrap; gap:8px; }
+    .edu-year { font-family:'Syne',sans-serif; font-size:3rem; font-weight:800; color:rgba(232,255,71,0.12); line-height:1; }
+
+    /* CONTACT */
+    .contact-inner { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+    .contact-text p { color:var(--muted); line-height:1.75; margin-bottom:32px; }
+    .contact-links { display:flex; flex-direction:column; gap:12px; }
+    .contact-link {
+      display:flex; align-items:center; gap:16px;
+      background:var(--card); border:1px solid var(--border); border-radius:10px;
+      padding:16px 20px; text-decoration:none;
+      transition:border-color 0.2s, transform 0.15s;
+    }
+    .contact-link:hover { border-color:rgba(232,255,71,0.35); transform:translateX(4px); }
+    .contact-link-icon { font-size:1.1rem; width:28px; text-align:center; }
+    .contact-link-info { flex:1; }
+    .contact-link-label { font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; }
+    .contact-link-val { color:var(--text); font-size:0.95rem; }
+    .contact-link-arrow { color:var(--muted); font-size:0.8rem; transition:transform 0.15s; }
+    .contact-link:hover .contact-link-arrow { transform:translateX(4px); color:var(--accent); }
+
+    /* FOOTER */
+    footer { border-top:1px solid var(--border); padding:32px 0; font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--muted); }
+    .footer-inner { display:flex; align-items:center; justify-content:space-between; }
+
+    /* SCROLL REVEAL */
+    .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width:768px) {
+      .hero-inner { grid-template-columns:1fr; }
+      .hero-stats { flex-direction:row; flex-wrap:wrap; }
+      .stat { text-align:left; flex:1; min-width:100px; }
+      .contact-inner { grid-template-columns:1fr; gap:40px; }
+      .edu-card { grid-template-columns:1fr; }
+      .edu-year { font-size:2rem; }
+      .nav-links { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-orb one"></div>
+  <div class="glow-orb two"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo">CO.</a>
+      <ul class="nav-links">
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-tag">Open to Summer 2025 Internships</div>
+          <h1>
+            Hi, I'm <span class="name">Chukwuemeka&nbsp;Omokwe</span>
+            <span class="line2">Software Developer &amp; CS Student at UPEI</span>
+          </h1>
+          <p class="hero-desc">
+            I build clean, purposeful software — from ML pipelines to object-oriented systems grounded in solid design patterns. Backed by hands-on experience at Tulip Retail and The Coca-Cola Company, I care about code that ships and products that matter.
+          </p>
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">View Projects ↓</a>
+            <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num">2+</div>
+            <div class="stat-label">Internships</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">6+</div>
+            <div class="stat-label">Languages</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">2027</div>
+            <div class="stat-label">Graduating</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-label">01 // Expertise</div>
+      <h2 class="section-title">Skills &amp; Technologies</h2>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <div class="skill-card-icon">💻</div>
+          <div class="skill-card-title">Languages</div>
+          <div class="skill-tags">
+            <span class="tag">Python</span><span class="tag">Java</span><span class="tag">C++</span>
+            <span class="tag">JavaScript</span><span class="tag">SQL</span><span class="tag">HTML / CSS</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card-icon">⚛️</div>
+          <div class="skill-card-title">Web &amp; Frameworks</div>
+          <div class="skill-tags">
+            <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">REST APIs</span>
+            <span class="tag">PostgreSQL</span><span class="tag">MySQL</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card-icon">🤖</div>
+          <div class="skill-card-title">Machine Learning</div>
+          <div class="skill-tags">
+            <span class="tag">scikit-learn</span><span class="tag">NumPy</span><span class="tag">Pandas</span>
+            <span class="tag">Model Evaluation</span><span class="tag">Feature Engineering</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card-icon">🏗️</div>
+          <div class="skill-card-title">Software Design</div>
+          <div class="skill-tags">
+            <span class="tag">Design Patterns</span><span class="tag">UML</span><span class="tag">OOP</span>
+            <span class="tag">Data Structures</span><span class="tag">Algorithms</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card-icon">🛠️</div>
+          <div class="skill-card-title">Tools &amp; Workflow</div>
+          <div class="skill-tags">
+            <span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">IntelliJ IDEA</span>
+            <span class="tag">VS Code</span><span class="tag">Linux</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card-icon">📊</div>
+          <div class="skill-card-title">Data &amp; Analytics</div>
+          <div class="skill-tags">
+            <span class="tag">Excel</span><span class="tag">Tableau</span><span class="tag">Salesforce</span>
+            <span class="tag">ETL Pipelines</span><span class="tag">SQL Analytics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-label">02 // Work History</div>
+      <h2 class="section-title">Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-meta">
+            <span class="timeline-co">Tulip Retail</span>
+            <span class="timeline-date">2024</span>
+          </div>
+          <div class="timeline-role">Software Developer Intern</div>
+          <ul class="timeline-desc">
+            <li>Developed and shipped features in a production retail SaaS platform used by enterprise clients worldwide.</li>
+            <li>Collaborated with engineering teams in an Agile environment, participating in sprints, code reviews, and technical planning sessions.</li>
+            <li>Wrote clean, tested code and contributed to improving codebase quality and internal documentation.</li>
+          </ul>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-meta">
+            <span class="timeline-co">The Coca-Cola Company</span>
+            <span class="timeline-date">2023</span>
+          </div>
+          <div class="timeline-role">Sales Operations Analyst Intern</div>
+          <ul class="timeline-desc">
+            <li>Analyzed large datasets to surface actionable insights for sales and operations leadership across national accounts.</li>
+            <li>Built automated reporting pipelines that reduced manual workload and improved data accuracy for the team.</li>
+            <li>Leveraged Salesforce and Excel to track KPIs and directly support strategic decision-making.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-label">03 // Selected Work</div>
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card reveal">
+          <div class="project-num">01</div>
+          <div class="project-title">Minesweeper — Design Patterns</div>
+          <div class="project-desc">Java implementation of Minesweeper applying State, Command, Singleton, and Template Method patterns. Includes full UML documentation and a CLI game loop.</div>
+          <div class="project-stack">
+            <span class="tag">Java</span><span class="tag">State Pattern</span><span class="tag">Command Pattern</span><span class="tag">UML</span>
+          </div>
+          <a href="https://github.com/Chuksies" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-num">02</div>
+          <div class="project-title">YorkStockSim</div>
+          <div class="project-desc">Event-driven Java stock exchange simulation implementing the Strategy and Observer patterns, with interchangeable trading strategies and real-time subscriber notifications.</div>
+          <div class="project-stack">
+            <span class="tag">Java</span><span class="tag">Observer Pattern</span><span class="tag">Strategy Pattern</span>
+          </div>
+          <a href="https://github.com/Chuksies" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-num">03</div>
+          <div class="project-title">Smart Home Command System</div>
+          <div class="project-desc">Command pattern applied to a smart home automation system supporting undo/redo, macro commands, and a unified device-control interface.</div>
+          <div class="project-stack">
+            <span class="tag">Java</span><span class="tag">Command Pattern</span><span class="tag">OOP</span>
+          </div>
+          <a href="https://github.com/Chuksies" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-num">04</div>
+          <div class="project-title">Event Management System — DB</div>
+          <div class="project-desc">Relational database design featuring full ERD, normalized schema, complex queries, indexed views, access control, and transactions for an event platform.</div>
+          <div class="project-stack">
+            <span class="tag">SQL</span><span class="tag">ERD</span><span class="tag">PostgreSQL</span><span class="tag">Database Design</span>
+          </div>
+          <a href="https://github.com/Chuksies" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-num">05</div>
+          <div class="project-title">ML Evaluation Framework</div>
+          <div class="project-desc">Built and compared multiple ML models with a focus on generalization, bias-variance tradeoff, cross-validation, and metrics including precision, recall, and F1.</div>
+          <div class="project-stack">
+            <span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Pandas</span><span class="tag">NumPy</span>
+          </div>
+          <a href="https://github.com/Chuksies" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-num">06</div>
+          <div class="project-title">Portfolio Website</div>
+          <div class="project-desc">This site — designed and built from scratch with vanilla HTML, CSS, and JavaScript. No frameworks, no dependencies, fully responsive.</div>
+          <div class="project-stack">
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+          </div>
+          <a href="https://github.com/Chuksies/Chuksies.github.io" target="_blank" rel="noopener" class="project-link">View Source →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <div class="section-label">04 // Academic Background</div>
+      <h2 class="section-title">Education</h2>
+      <div class="edu-card reveal">
+        <div>
+          <div class="edu-school">University of Prince Edward Island</div>
+          <div class="edu-degree">B.Sc. Computer Science — Expected May 2027</div>
+          <div class="edu-courses">
+            <span class="tag">Software Design Patterns (CS 3620)</span>
+            <span class="tag">Machine Learning (CS 4440)</span>
+            <span class="tag">Data Structures &amp; Algorithms (CS 2920)</span>
+            <span class="tag">Discrete Mathematics</span>
+            <span class="tag">Database Management</span>
+            <span class="tag">Intermediate Macroeconomics</span>
+          </div>
+        </div>
+        <div class="edu-year">UPEI</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container contact-inner">
+      <div class="contact-text reveal">
+        <div class="section-label">05 // Let's Connect</div>
+        <h2 class="section-title" style="margin-bottom:16px">Get in Touch</h2>
+        <p>I'm actively looking for internship and co-op opportunities for Summer 2025. Whether you have a role, a project, or just want to talk tech — feel free to reach out.</p>
+        <!-- ⚠️  Replace with your real email address -->
+        <a href="mailto:your.email@example.com" class="btn btn-primary">Say Hello →</a>
+      </div>
+      <div class="contact-links reveal">
+        <!-- ⚠️  Replace with your real email address in both places below -->
+        <a href="mailto:your.email@example.com" class="contact-link">
+          <span class="contact-link-icon">✉️</span>
+          <div class="contact-link-info">
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-val">your.email@example.com</div>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://github.com/Chuksies" target="_blank" rel="noopener" class="contact-link">
+          <span class="contact-link-icon">🐙</span>
+          <div class="contact-link-info">
+            <div class="contact-link-label">GitHub</div>
+            <div class="contact-link-val">github.com/Chuksies</div>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://www.linkedin.com/in/chukwuemeka-omokwe-b700b92a2" target="_blank" rel="noopener" class="contact-link">
+          <span class="contact-link-icon">💼</span>
+          <div class="contact-link-info">
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-val">linkedin.com/in/chukwuemeka-omokwe</div>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://upei.ca" target="_blank" rel="noopener" class="contact-link">
+          <span class="contact-link-icon">🏫</span>
+          <div class="contact-link-info">
+            <div class="contact-link-label">University</div>
+            <div class="contact-link-val">University of Prince Edward Island</div>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2025 Chukwuemeka Omokwe</span>
+      <span style="color:var(--border)">Built with HTML, CSS &amp; JS · PEI, Canada</span>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.skills-grid .skill-card, .projects-grid .project-card').forEach((el, i) => {
+      el.style.transitionDelay = `${i * 0.07}s`;
+    });
+  </script>
+</body>
+</html>
