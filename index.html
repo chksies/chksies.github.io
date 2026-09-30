@@ -208,6 +208,7 @@
       color:var(--accent); text-decoration:none; margin-top:4px; transition:gap 0.15s;
     }
     .project-link:hover { gap:10px; }
+    .project-note { font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--muted); }
 
     /* EDUCATION */
     .edu-card {
@@ -281,13 +282,13 @@
     <div class="container">
       <div class="hero-inner">
         <div>
-          <div class="hero-tag">Open to Summer 2025 Internships</div>
+          <div class="hero-tag">Open to Entry-Level Software Roles</div>
           <h1>
             Hi, I'm <span class="name">Chukwuemeka&nbsp;Omokwe</span>
             <span class="line2">Software Developer &amp; CS Student at UPEI</span>
           </h1>
           <p class="hero-desc">
-            I build clean, purposeful software — from ML pipelines to object-oriented systems grounded in solid design patterns. Backed by hands-on experience at Tulip Retail and The Coca-Cola Company, I care about code that ships and products that matter.
+            I build clean, purposeful software — from ML pipelines to object-oriented systems grounded in solid design patterns. Backed by hands-on experience at Mercor, Tulip Retail and The Coca-Cola Company, I care about code that ships and products that matter.
           </p>
           <div class="hero-cta">
             <a href="#projects" class="btn btn-primary">View Projects ↓</a>
@@ -296,8 +297,8 @@
         </div>
         <div class="hero-stats">
           <div class="stat">
-            <div class="stat-num">2+</div>
-            <div class="stat-label">Internships</div>
+            <div class="stat-num">4</div>
+            <div class="stat-label">Industry Roles</div>
           </div>
           <div class="stat">
             <div class="stat-num">6+</div>
@@ -323,15 +324,15 @@
           <div class="skill-card-title">Languages</div>
           <div class="skill-tags">
             <span class="tag">Python</span><span class="tag">Java</span><span class="tag">C++</span>
-            <span class="tag">JavaScript</span><span class="tag">SQL</span><span class="tag">HTML / CSS</span>
+            <span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">SQL</span><span class="tag">HTML / CSS</span>
           </div>
         </div>
         <div class="skill-card reveal">
           <div class="skill-card-icon">⚛️</div>
           <div class="skill-card-title">Web &amp; Frameworks</div>
           <div class="skill-tags">
-            <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">REST APIs</span>
-            <span class="tag">PostgreSQL</span><span class="tag">MySQL</span>
+            <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">REST APIs</span>
+            <span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">MongoDB</span>
           </div>
         </div>
         <div class="skill-card reveal">
@@ -354,7 +355,7 @@
           <div class="skill-card-icon">🛠️</div>
           <div class="skill-card-title">Tools &amp; Workflow</div>
           <div class="skill-tags">
-            <span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">IntelliJ IDEA</span>
+            <span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">AWS</span><span class="tag">IntelliJ IDEA</span>
             <span class="tag">VS Code</span><span class="tag">Linux</span>
           </div>
         </div>
@@ -378,14 +379,38 @@
       <div class="timeline">
         <div class="timeline-item reveal">
           <div class="timeline-meta">
+            <span class="timeline-co">Eastlink (via EastCore Inc.)</span>
+            <span class="timeline-date">2026 – Present</span>
+          </div>
+          <div class="timeline-role">Sales Representative</div>
+          <ul class="timeline-desc">
+            <li>Sell Eastlink services to customers in Charlottetown, PE, recommending plans that fit their needs and communicating clearly to close sales.</li>
+          </ul>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-meta">
+            <span class="timeline-co">Mercor</span>
+            <span class="timeline-date">2026</span>
+          </div>
+          <div class="timeline-role">AI Training Contractor</div>
+          <ul class="timeline-desc">
+            <li>Completed coding exercises and technical problem sets used as human-verified training data for large language models.</li>
+            <li>Reviewed and graded AI-generated code submissions for correctness, efficiency, and adherence to best practices.</li>
+            <li>Performed RLHF-style evaluations of AI model responses, rating outputs for accuracy, helpfulness, and safety.</li>
+            <li>Conducted technical interviews and skills assessments of contractor candidates for AI lab clients.</li>
+          </ul>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-meta">
             <span class="timeline-co">Tulip Retail</span>
             <span class="timeline-date">2024</span>
           </div>
           <div class="timeline-role">Software Developer Intern</div>
           <ul class="timeline-desc">
-            <li>Developed and shipped features in a production retail SaaS platform used by enterprise clients worldwide.</li>
-            <li>Collaborated with engineering teams in an Agile environment, participating in sprints, code reviews, and technical planning sessions.</li>
-            <li>Wrote clean, tested code and contributed to improving codebase quality and internal documentation.</li>
+            <li>Built and maintained React + TypeScript UI components for a retail SaaS platform used by enterprise clients.</li>
+            <li>Integrated Node.js/Express endpoints with frontend state and optimised data fetching to reduce API round-trips.</li>
+            <li>Wrote unit tests, participated in code reviews, and followed Agile sprint practices; contributed to internal documentation.</li>
+            <li>Collaborated with a distributed, cross-functional team using Slack, GitHub pull requests, and Notion.</li>
           </ul>
         </div>
         <div class="timeline-item reveal">
@@ -393,11 +418,10 @@
             <span class="timeline-co">The Coca-Cola Company</span>
             <span class="timeline-date">2023</span>
           </div>
-          <div class="timeline-role">Sales Operations Analyst Intern</div>
+          <div class="timeline-role">Sales Operations Analyst</div>
           <ul class="timeline-desc">
-            <li>Analyzed large datasets to surface actionable insights for sales and operations leadership across national accounts.</li>
             <li>Built automated reporting pipelines that reduced manual workload and improved data accuracy for the team.</li>
-            <li>Leveraged Salesforce and Excel to track KPIs and directly support strategic decision-making.</li>
+            <li>Analysed sales data and tracked KPIs in Salesforce and Excel, improving visibility into distribution performance.</li>
           </ul>
         </div>
       </div>
@@ -412,57 +436,84 @@
       <div class="projects-grid">
         <div class="project-card reveal">
           <div class="project-num">01</div>
-          <div class="project-title">Minesweeper — Design Patterns</div>
-          <div class="project-desc">Java implementation of Minesweeper applying State, Command, Singleton, and Template Method patterns. Includes full UML documentation and a CLI game loop.</div>
+          <div class="project-title">Tenantly — Multi-Tenant SaaS Backend</div>
+          <div class="project-desc">From-scratch backend where tenant isolation is enforced by PostgreSQL row-level security. JWT + OAuth2 (PKCE) auth with rotating refresh tokens, role-based access control, idempotent signature-verified Stripe webhooks, and an append-only audit log. 83 integration tests run against real PostgreSQL in CI.</div>
           <div class="project-stack">
-            <span class="tag">Java</span><span class="tag">State Pattern</span><span class="tag">Command Pattern</span><span class="tag">UML</span>
+            <span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">Fastify</span><span class="tag">PostgreSQL</span><span class="tag">Stripe</span><span class="tag">OAuth2</span>
           </div>
-          <a href="https://github.com/chksies" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+          <a href="https://github.com/chksies/tenantly" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
         </div>
         <div class="project-card reveal">
           <div class="project-num">02</div>
+          <div class="project-title">GymLock — Social Fitness Accountability App</div>
+          <div class="project-desc">Locket-style gym check-in app combining photo sharing with Snapchat-style streaks. Expo / React Native client backed by a FastAPI + MongoDB API with JWT auth, friend requests and a photo feed.</div>
+          <div class="project-stack">
+            <span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">FastAPI</span><span class="tag">MongoDB</span>
+          </div>
+          <a href="https://github.com/chksies/GymBuddy" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-num">03</div>
+          <div class="project-title">Humanizer Web App</div>
+          <div class="project-desc">Web tool that rewrites AI-generated text to read more naturally, streaming responses from the Anthropic Claude API.</div>
+          <div class="project-stack">
+            <span class="tag">JavaScript</span><span class="tag">Claude API</span><span class="tag">HTML / CSS</span>
+          </div>
+          <a href="https://github.com/chksies/AIhumanizer" target="_blank" rel="noopener" class="project-link">View Source →</a>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-num">04</div>
+          <div class="project-title">Minesweeper — Design Patterns</div>
+          <div class="project-desc">Java implementation of Minesweeper applying State, Command, Singleton, and Template Method patterns, with undo/redo, high scores, and full UML documentation.</div>
+          <div class="project-stack">
+            <span class="tag">Java</span><span class="tag">State Pattern</span><span class="tag">Command Pattern</span><span class="tag">UML</span>
+          </div>
+          <a href="https://github.com/chksies/minesweeper" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-num">05</div>
           <div class="project-title">YorkStockSim</div>
           <div class="project-desc">Event-driven Java stock exchange simulation implementing the Strategy and Observer patterns, with interchangeable trading strategies and real-time subscriber notifications.</div>
           <div class="project-stack">
             <span class="tag">Java</span><span class="tag">Observer Pattern</span><span class="tag">Strategy Pattern</span>
           </div>
-          <a href="https://github.com/chksies" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+          <span class="project-note">Coursework project · repository not public</span>
         </div>
         <div class="project-card reveal">
-          <div class="project-num">03</div>
+          <div class="project-num">06</div>
+          <div class="project-title">Concert Venue Ticketing Database</div>
+          <div class="project-desc">Relational database design for a ticketing system: ERD, normalized schema, and queries for venue, event, and seat management, with indexed views, access control, and transactions.</div>
+          <div class="project-stack">
+            <span class="tag">SQL</span><span class="tag">ERD</span><span class="tag">PostgreSQL</span><span class="tag">CSCI 3710</span>
+          </div>
+          <span class="project-note">Coursework project · repository not public</span>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-num">07</div>
           <div class="project-title">Smart Home Command System</div>
           <div class="project-desc">Command pattern applied to a smart home automation system supporting undo/redo, macro commands, and a unified device-control interface.</div>
           <div class="project-stack">
             <span class="tag">Java</span><span class="tag">Command Pattern</span><span class="tag">OOP</span>
           </div>
-          <a href="https://github.com/chksies" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+          <span class="project-note">Coursework project · repository not public</span>
         </div>
         <div class="project-card reveal">
-          <div class="project-num">04</div>
-          <div class="project-title">Event Management System — DB</div>
-          <div class="project-desc">Relational database design featuring full ERD, normalized schema, complex queries, indexed views, access control, and transactions for an event platform.</div>
-          <div class="project-stack">
-            <span class="tag">SQL</span><span class="tag">ERD</span><span class="tag">PostgreSQL</span><span class="tag">Database Design</span>
-          </div>
-          <a href="https://github.com/chksies" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
-        </div>
-        <div class="project-card reveal">
-          <div class="project-num">05</div>
+          <div class="project-num">08</div>
           <div class="project-title">ML Evaluation Framework</div>
           <div class="project-desc">Built and compared multiple ML models with a focus on generalization, bias-variance tradeoff, cross-validation, and metrics including precision, recall, and F1.</div>
           <div class="project-stack">
             <span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Pandas</span><span class="tag">NumPy</span>
           </div>
-          <a href="https://github.com/chksies" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+          <span class="project-note">Coursework project · repository not public</span>
         </div>
         <div class="project-card reveal">
-          <div class="project-num">06</div>
+          <div class="project-num">09</div>
           <div class="project-title">Portfolio Website</div>
           <div class="project-desc">This site — designed and built from scratch with vanilla HTML, CSS, and JavaScript. No frameworks, no dependencies, fully responsive.</div>
           <div class="project-stack">
             <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
           </div>
-          <a href="https://github.com/Chksies/Chksies.github.io" target="_blank" rel="noopener" class="project-link">View Source →</a>
+          <a href="https://github.com/chksies/chksies.github.io" target="_blank" rel="noopener" class="project-link">View Source →</a>
         </div>
       </div>
     </div>
@@ -488,6 +539,19 @@
         </div>
         <div class="edu-year">UPEI</div>
       </div>
+      <div class="edu-card reveal" style="margin-top:20px">
+        <div>
+          <div class="edu-school">Certifications</div>
+          <div class="edu-degree">Amazon Web Services · Google / Coursera — 2024</div>
+          <div class="edu-courses">
+            <span class="tag">AWS Certified Solutions Architect — Associate</span>
+            <span class="tag">AWS Certified Cloud Practitioner</span>
+            <span class="tag">Google IT Support Certificate</span>
+            <span class="tag">Google Data Analytics Certificate</span>
+          </div>
+        </div>
+        <div class="edu-year">2024</div>
+      </div>
     </div>
   </section>
 
@@ -497,11 +561,10 @@
       <div class="contact-text reveal">
         <div class="section-label">05 // Let's Connect</div>
         <h2 class="section-title" style="margin-bottom:16px">Get in Touch</h2>
-        <p>I'm actively looking for internship and co-op opportunities for Summer 2025. Whether you have a role, a project, or just want to talk tech — feel free to reach out.</p>
+        <p>I'm actively looking for software engineering opportunities — internships, co-ops and entry-level roles. Whether you have a role, a project, or just want to talk tech — feel free to reach out.</p>
         <a href="mailto:chukwuemekaomokwe@gmail.com" class="btn btn-primary">Say Hello →</a>
       </div>
       <div class="contact-links reveal">
-        <!-- ⚠️  Replace with your real email address in both places below -->
         <a href="mailto:chukwuemekaomokwe@gmail.com" class="contact-link">
           <span class="contact-link-icon">✉️</span>
           <div class="contact-link-info">
@@ -510,11 +573,11 @@
           </div>
           <span class="contact-link-arrow">→</span>
         </a>
-        <a href="https://github.com/Chksies" target="_blank" rel="noopener" class="contact-link">
+        <a href="https://github.com/chksies" target="_blank" rel="noopener" class="contact-link">
           <span class="contact-link-icon">🐙</span>
           <div class="contact-link-info">
             <div class="contact-link-label">GitHub</div>
-            <div class="contact-link-val">github.com/Chksies</div>
+            <div class="contact-link-val">github.com/chksies</div>
           </div>
           <span class="contact-link-arrow">→</span>
         </a>
@@ -541,7 +604,7 @@
   <!-- FOOTER -->
   <footer>
     <div class="container footer-inner">
-      <span>© 2025 Chukwuemeka Omokwe</span>
+      <span>© 2026 Chukwuemeka Omokwe</span>
       <span style="color:var(--border)">Built with HTML, CSS &amp; JS · PEI, Canada</span>
     </div>
   </footer>
