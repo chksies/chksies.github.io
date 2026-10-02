@@ -220,6 +220,47 @@
     .edu-courses { display:flex; flex-wrap:wrap; gap:8px; }
     .edu-year { font-family:'Syne',sans-serif; font-size:3rem; font-weight:800; color:rgba(232,255,71,0.12); line-height:1; }
 
+    /* INTERESTS */
+    #interests { background:var(--surface); }
+    .interests-intro { color:var(--muted); font-size:1rem; line-height:1.75; max-width:640px; margin-bottom:48px; }
+    .interests-group { margin-bottom:52px; }
+    .interests-group:last-child { margin-bottom:0; }
+    .interests-group-title {
+      font-family:'Syne',sans-serif; font-weight:700; font-size:1.1rem;
+      display:flex; align-items:center; gap:10px; margin-bottom:20px;
+    }
+    .interests-group-note { font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--muted); font-weight:400; }
+
+    .poster-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:16px; }
+    .poster-card {
+      position:relative; aspect-ratio:2/3; border-radius:12px; overflow:hidden;
+      border:1px solid var(--border); background:var(--card);
+      transition:transform 0.2s, border-color 0.2s;
+    }
+    .poster-card:hover { transform:translateY(-4px); border-color:rgba(232,255,71,0.35); }
+    .poster-card img { width:100%; height:100%; object-fit:cover; display:block; }
+    .poster-card.wide { aspect-ratio:16/8; }
+    .poster-label {
+      position:absolute; left:0; right:0; bottom:0; padding:10px 12px 8px;
+      background:linear-gradient(to top, rgba(0,0,0,0.88), transparent);
+      font-family:'DM Mono',monospace; font-size:0.7rem; color:#fff; line-height:1.35;
+    }
+    .poster-label small { display:block; color:rgba(255,255,255,0.6); font-size:0.65rem; margin-top:2px; }
+    .poster-card.wide .poster-label { background:linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.1)); }
+    .poster-fill {
+      width:100%; height:100%; display:flex; align-items:center; justify-content:center; text-align:center; padding:16px;
+    }
+    .poster-fill .big { font-family:'Syne',sans-serif; font-weight:800; font-size:1.3rem; color:#fff; letter-spacing:-0.01em; }
+    .poster-fill .small { font-family:'DM Mono',monospace; font-size:0.68rem; color:rgba(255,255,255,0.75); margin-top:6px; }
+
+    .spotify-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .spotify-card-label { font-family:'DM Mono',monospace; font-size:0.78rem; color:var(--muted); margin-bottom:10px; }
+    .spotify-card iframe { border-radius:12px; display:block; width:100%; }
+
+    @media (max-width:640px) {
+      .spotify-grid { grid-template-columns:1fr; }
+    }
+
     /* CONTACT */
     .contact-inner { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
     .contact-text p { color:var(--muted); line-height:1.75; margin-bottom:32px; }
@@ -272,6 +313,7 @@
         <li><a href="#experience">Experience</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#education">Education</a></li>
+        <li><a href="#interests">Interests</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -555,11 +597,120 @@
     </div>
   </section>
 
+  <!-- INTERESTS -->
+  <section id="interests">
+    <div class="container">
+      <div class="section-label">05 // Outside of Code</div>
+      <h2 class="section-title">Interests</h2>
+      <p class="interests-intro">When I'm not writing code, I'm usually deep into an anime, grinding a game, watching football, or playing music non-stop in the background.</p>
+
+      <div class="interests-group reveal">
+        <div class="interests-group-title">🍥 Anime <span class="interests-group-note">— favourites, no particular order</span></div>
+        <div class="poster-grid">
+          <div class="poster-card">
+            <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx666-kYzXvKlUbeMP.jpg" alt="JoJo's Bizarre Adventure cover art" loading="lazy">
+            <div class="poster-label">JoJo's Bizarre Adventure</div>
+          </div>
+          <div class="poster-card">
+            <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-ELSYx3yMPcKM.jpg" alt="One Piece cover art" loading="lazy">
+            <div class="poster-label">One Piece</div>
+          </div>
+          <div class="poster-card">
+            <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx19-gtMC64182sm4.jpg" alt="Monster cover art" loading="lazy">
+            <div class="poster-label">Monster</div>
+          </div>
+          <div class="poster-card">
+            <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx170068-ijY3tCP8KoWP.jpg" alt="Frieren: Beyond Journey's End cover art" loading="lazy">
+            <div class="poster-label">Frieren: Beyond Journey's End</div>
+          </div>
+          <div class="poster-card">
+            <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-buvcRTBx4NSm.jpg" alt="Attack on Titan cover art" loading="lazy">
+            <div class="poster-label">Attack on Titan</div>
+          </div>
+          <div class="poster-card">
+            <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx113415-LHBAeoZDIsnF.jpg" alt="Jujutsu Kaisen cover art" loading="lazy">
+            <div class="poster-label">Jujutsu Kaisen</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="interests-group reveal">
+        <div class="interests-group-title">🎮 Gaming</div>
+        <div class="poster-grid">
+          <div class="poster-card">
+            <img src="https://cdn.akamai.steamstatic.com/steam/apps/2767030/header.jpg" alt="Marvel Rivals header art" loading="lazy">
+            <div class="poster-label">Marvel Rivals<small>Current favourite</small></div>
+          </div>
+          <div class="poster-card">
+            <img src="https://cdn.akamai.steamstatic.com/steam/apps/2669320/header.jpg" alt="EA Sports FC header art" loading="lazy">
+            <div class="poster-label">FIFA / EA Sports FC<small>Played constantly</small></div>
+          </div>
+          <div class="poster-card">
+            <img src="https://cdn.akamai.steamstatic.com/steam/apps/1172470/header.jpg" alt="Apex Legends header art" loading="lazy">
+            <div class="poster-label">Apex Legends</div>
+          </div>
+          <div class="poster-card">
+            <img src="https://cdn.akamai.steamstatic.com/steam/apps/208650/header.jpg" alt="Batman: Arkham Knight header art" loading="lazy">
+            <div class="poster-label">Batman: Arkham Knight</div>
+          </div>
+          <div class="poster-card">
+            <div class="poster-fill" style="background:linear-gradient(135deg,#1a0a2e,#4a0e6e);">
+              <div>
+                <div class="big">GTA&nbsp;VI</div>
+                <div class="small">Still waiting... 😮‍💨</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="interests-group reveal">
+        <div class="interests-group-title">⚽ Football</div>
+        <div class="poster-grid">
+          <div class="poster-card">
+            <div class="poster-fill" style="background:linear-gradient(135deg,#DA291C,#7a140c);">
+              <div>
+                <div class="big">Man Utd</div>
+                <div class="small">Favourite club</div>
+              </div>
+            </div>
+          </div>
+          <div class="poster-card">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Robin_Van_Persie_MUFC_2013.jpg?width=400" alt="Robin van Persie playing for Manchester United" loading="lazy">
+            <div class="poster-label">Robin van Persie<small>Favourite player</small></div>
+          </div>
+          <div class="poster-card">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Bruno_Fernandes_USMNT_v_Portugal_Mar_31_2026-27_(cropped).jpg?width=400" alt="Bruno Fernandes" loading="lazy">
+            <div class="poster-label">Bruno Fernandes<small>Favourite player</small></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="interests-group reveal">
+        <div class="interests-group-title">🎧 Music <span class="interests-group-note">— genuinely any genre, but here's what's on repeat</span></div>
+        <div class="spotify-grid">
+          <div class="spotify-card">
+            <div class="spotify-card-label">🥀 Give this playlist a listen</div>
+            <iframe src="https://open.spotify.com/embed/playlist/2o6FtFlLm6zDWC5NI9TdLC?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          </div>
+          <div class="spotify-card">
+            <div class="spotify-card-label">✒️ Give this playlist a listen</div>
+            <iframe src="https://open.spotify.com/embed/playlist/4HiZtoheyuwwz9KqrsgMlA?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-family:'DM Mono',monospace; font-size:0.68rem; color:var(--muted); margin-top:40px;">
+        Cover art via AniList &amp; Steam · player photos via Wikimedia Commons.
+      </p>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section id="contact">
     <div class="container contact-inner">
       <div class="contact-text reveal">
-        <div class="section-label">05 // Let's Connect</div>
+        <div class="section-label">06 // Let's Connect</div>
         <h2 class="section-title" style="margin-bottom:16px">Get in Touch</h2>
         <p>I'm actively looking for software engineering opportunities — internships, co-ops and entry-level roles. Whether you have a role, a project, or just want to talk tech — feel free to reach out.</p>
         <a href="mailto:chukwuemekaomokwe@gmail.com" class="btn btn-primary">Say Hello →</a>
