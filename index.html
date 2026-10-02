@@ -231,13 +231,32 @@
     }
     .interests-group-note { font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--muted); font-weight:400; }
 
-    .poster-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:16px; }
+    .poster-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:16px 20px; }
     .poster-card {
       position:relative; aspect-ratio:2/3; border-radius:12px; overflow:hidden;
       border:1px solid var(--border); background:var(--card);
-      transition:transform 0.2s, border-color 0.2s;
+      transition:transform 0.25s ease, border-color 0.2s, box-shadow 0.25s ease;
+      transform:rotate(var(--tilt, 0deg));
+      box-shadow:0 0 0 rgba(0,0,0,0);
     }
-    .poster-card:hover { transform:translateY(-4px); border-color:rgba(232,255,71,0.35); }
+    .poster-grid .poster-card:nth-child(5n+1) { --tilt: -2.5deg; }
+    .poster-grid .poster-card:nth-child(5n+2) { --tilt: 1.8deg; }
+    .poster-grid .poster-card:nth-child(5n+3) { --tilt: -1.2deg; }
+    .poster-grid .poster-card:nth-child(5n+4) { --tilt: 2.4deg; }
+    .poster-grid .poster-card:nth-child(5n+5) { --tilt: -1.8deg; }
+    .poster-card::before {
+      content:''; position:absolute; top:8px; left:50%; translate:-50% 0;
+      width:9px; height:9px; border-radius:50%;
+      background:radial-gradient(circle at 35% 35%, #ffef9e, var(--accent) 70%);
+      box-shadow:0 2px 4px rgba(0,0,0,0.4);
+      z-index:2; opacity:0.9;
+    }
+    .poster-card:hover {
+      transform:rotate(0deg) translateY(-6px) scale(1.04);
+      border-color:rgba(232,255,71,0.4);
+      box-shadow:0 16px 32px rgba(0,0,0,0.45);
+      z-index:3;
+    }
     .poster-card img { width:100%; height:100%; object-fit:cover; display:block; }
     .poster-card.wide { aspect-ratio:16/8; }
     .poster-label {
@@ -602,10 +621,10 @@
     <div class="container">
       <div class="section-label">05 // Outside of Code</div>
       <h2 class="section-title">Interests</h2>
-      <p class="interests-intro">When I'm not writing code, I'm usually deep into an anime, grinding a game, watching football, or playing music non-stop in the background.</p>
+      <p class="interests-intro">When I'm not committing code, I'm probably committing to a rewatch, queueing up another match, yelling at a United game, or playing the same three songs on loop until everyone around me has them memorized too.</p>
 
       <div class="interests-group reveal">
-        <div class="interests-group-title">🍥 Anime <span class="interests-group-note">— favourites, no particular order</span></div>
+        <div class="interests-group-title">🍥 Anime <span class="interests-group-note">— rewatch-worthy, ranked by vibes not logic</span></div>
         <div class="poster-grid">
           <div class="poster-card">
             <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx666-kYzXvKlUbeMP.jpg" alt="JoJo's Bizarre Adventure cover art" loading="lazy">
@@ -635,7 +654,7 @@
       </div>
 
       <div class="interests-group reveal">
-        <div class="interests-group-title">🎮 Gaming</div>
+        <div class="interests-group-title">🎮 Gaming <span class="interests-group-note">— mostly for the wins, occasionally for the rage quits</span></div>
         <div class="poster-grid">
           <div class="poster-card wide">
             <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2767030/088fc787d8513a6f9782d03968e5ac1a01840087/header.jpg" alt="Marvel Rivals header art" loading="lazy">
@@ -665,7 +684,7 @@
       </div>
 
       <div class="interests-group reveal">
-        <div class="interests-group-title">⚽ Football</div>
+        <div class="interests-group-title">⚽ Football <span class="interests-group-note">— for better or worse (lately, mostly worse)</span></div>
         <div class="poster-grid">
           <div class="poster-card">
             <div class="poster-fill" style="background:linear-gradient(160deg,#1a1a2e,#0a0a0f);">
@@ -687,7 +706,7 @@
       </div>
 
       <div class="interests-group reveal">
-        <div class="interests-group-title">🎧 Music <span class="interests-group-note">— genuinely any genre, but here's what's on repeat</span></div>
+        <div class="interests-group-title">🎧 Music <span class="interests-group-note">— zero genre loyalty, don't ask me to pick a favourite</span></div>
         <div class="spotify-grid">
           <div class="spotify-card">
             <div class="spotify-card-label">🥀 Give this playlist a listen</div>
@@ -700,7 +719,10 @@
         </div>
       </div>
 
-      <p style="font-family:'DM Mono',monospace; font-size:0.68rem; color:var(--muted); margin-top:40px;">
+      <p style="font-family:'DM Mono',monospace; font-size:0.78rem; color:var(--muted); margin-top:44px;">
+        If any of this overlaps with yours, we're probably already friends. 🤝
+      </p>
+      <p style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--muted); opacity:0.6; margin-top:10px;">
         Cover art via AniList &amp; Steam · player photos via Wikimedia Commons.
       </p>
     </div>
