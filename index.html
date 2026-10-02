@@ -277,16 +277,18 @@
     .spotify-card-label { font-family:'DM Mono',monospace; font-size:0.78rem; color:var(--muted); margin-bottom:10px; }
     .spotify-card iframe { border-radius:12px; display:block; width:100%; }
 
-    .poster-card[data-clip] { cursor:pointer; }
-    .poster-card[data-clip]::after {
-      content:'▶'; position:absolute; top:50%; left:50%; translate:-50% -50%;
+    .poster-card[data-clip], .poster-card[data-image] { cursor:pointer; }
+    .poster-card[data-clip]::after, .poster-card[data-image]::after {
+      position:absolute; top:50%; left:50%; translate:-50% -50%;
       width:46px; height:46px; border-radius:50%;
       background:rgba(10,10,15,0.6); border:1px solid rgba(255,255,255,0.25);
       color:#fff; font-size:15px; line-height:1;
-      display:flex; align-items:center; justify-content:center; padding-left:3px;
+      display:flex; align-items:center; justify-content:center;
       opacity:0; transition:opacity 0.2s, transform 0.2s; z-index:2;
     }
-    .poster-card[data-clip]:hover::after { opacity:1; transform:translate(-50%,-50%) scale(1.08); }
+    .poster-card[data-clip]::after { content:'▶'; padding-left:3px; }
+    .poster-card[data-image]::after { content:'🔍'; font-size:17px; }
+    .poster-card[data-clip]:hover::after, .poster-card[data-image]:hover::after { opacity:1; transform:translate(-50%,-50%) scale(1.08); }
 
     .clip-modal {
       position:fixed; inset:0; background:rgba(5,5,8,0.9);
@@ -295,7 +297,7 @@
     }
     .clip-modal.open { display:flex; }
     .clip-modal-inner { position:relative; max-width:860px; width:100%; }
-    .clip-modal-inner video { width:100%; max-height:78vh; border-radius:12px; display:block; background:#000; }
+    .clip-modal-inner video, .clip-modal-inner img { width:100%; max-height:78vh; border-radius:12px; display:block; background:#000; object-fit:contain; }
     .clip-modal-close {
       position:absolute; top:-38px; right:0; background:none; border:none;
       color:#fff; font-size:1.3rem; cursor:pointer; font-family:'DM Mono',monospace;
@@ -691,7 +693,7 @@
             <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4080220/ff6a3779f1ca83aae8ad3878454f6c11008ea24d/header.jpg" alt="EA Sports FC 27 header art" loading="lazy">
             <div class="poster-label">FIFA / EA Sports FC 27<small>Played constantly · click to watch a clip</small></div>
           </div>
-          <div class="poster-card wide">
+          <div class="poster-card wide" data-image="assets/images/apex-legends.jpg">
             <img src="assets/images/apex-legends.jpg" alt="Apex Legends match summary - squad placed #2, 14 kills" loading="lazy">
             <div class="poster-label">Apex Legends<small>#2 finish, 14 kills with the squad</small></div>
           </div>
@@ -814,6 +816,7 @@
     <div class="clip-modal-inner">
       <button class="clip-modal-close" aria-label="Close">✕ Close</button>
       <video id="clip-video" controls playsinline></video>
+      <img id="clip-image" style="display:none;" alt="">
     </div>
   </div>
 
@@ -826,22 +829,37 @@
       el.style.transitionDelay = `${i * 0.07}s`;
     });
 
-    // Click-to-play clips on interest cards
+    // Click-to-play clips / click-to-enlarge images on interest cards
     const clipModal = document.getElementById('clip-modal');
     const clipVideo = document.getElementById('clip-video');
+    const clipImage = document.getElementById('clip-image');
     function openClip(src) {
+      clipImage.style.display = 'none';
+      clipVideo.style.display = 'block';
       clipVideo.src = src;
       clipModal.classList.add('open');
       clipVideo.play().catch(() => {});
+    }
+    function openImage(src, alt) {
+      clipVideo.pause();
+      clipVideo.style.display = 'none';
+      clipImage.style.display = 'block';
+      clipImage.src = src;
+      clipImage.alt = alt || '';
+      clipModal.classList.add('open');
     }
     function closeClip() {
       clipModal.classList.remove('open');
       clipVideo.pause();
       clipVideo.removeAttribute('src');
       clipVideo.load();
+      clipImage.removeAttribute('src');
     }
     document.querySelectorAll('.poster-card[data-clip]').forEach(card => {
       card.addEventListener('click', () => openClip(card.dataset.clip));
+    });
+    document.querySelectorAll('.poster-card[data-image]').forEach(card => {
+      card.addEventListener('click', () => openImage(card.dataset.image, card.querySelector('img')?.alt));
     });
     clipModal.addEventListener('click', (e) => { if (e.target === clipModal) closeClip(); });
     document.querySelector('.clip-modal-close').addEventListener('click', closeClip);
