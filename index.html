@@ -276,6 +276,32 @@
     .spotify-card-label { font-family:'DM Mono',monospace; font-size:0.78rem; color:var(--muted); margin-bottom:10px; }
     .spotify-card iframe { border-radius:12px; display:block; width:100%; }
 
+    .poster-card[data-clip] { cursor:pointer; }
+    .poster-card[data-clip]::after {
+      content:'▶'; position:absolute; top:50%; left:50%; translate:-50% -50%;
+      width:46px; height:46px; border-radius:50%;
+      background:rgba(10,10,15,0.6); border:1px solid rgba(255,255,255,0.25);
+      color:#fff; font-size:15px; line-height:1;
+      display:flex; align-items:center; justify-content:center; padding-left:3px;
+      opacity:0; transition:opacity 0.2s, transform 0.2s; z-index:2;
+    }
+    .poster-card[data-clip]:hover::after { opacity:1; transform:translate(-50%,-50%) scale(1.08); }
+
+    .clip-modal {
+      position:fixed; inset:0; background:rgba(5,5,8,0.9);
+      display:none; align-items:center; justify-content:center;
+      z-index:1000; padding:24px; backdrop-filter:blur(6px);
+    }
+    .clip-modal.open { display:flex; }
+    .clip-modal-inner { position:relative; max-width:860px; width:100%; }
+    .clip-modal-inner video { width:100%; max-height:78vh; border-radius:12px; display:block; background:#000; }
+    .clip-modal-close {
+      position:absolute; top:-38px; right:0; background:none; border:none;
+      color:#fff; font-size:1.3rem; cursor:pointer; font-family:'DM Mono',monospace;
+      opacity:0.8; transition:opacity 0.15s;
+    }
+    .clip-modal-close:hover { opacity:1; }
+
     @media (max-width:640px) {
       .spotify-grid { grid-template-columns:1fr; }
     }
@@ -656,17 +682,17 @@
       <div class="interests-group reveal">
         <div class="interests-group-title">🎮 Gaming <span class="interests-group-note">— mostly for the wins, occasionally for the rage quits</span></div>
         <div class="poster-grid">
-          <div class="poster-card wide">
+          <div class="poster-card wide" data-clip="assets/clips/marvel-rivals.mp4">
             <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2767030/088fc787d8513a6f9782d03968e5ac1a01840087/header.jpg" alt="Marvel Rivals header art" loading="lazy">
-            <div class="poster-label">Marvel Rivals<small>Current favourite</small></div>
+            <div class="poster-label">Marvel Rivals<small>Current favourite · click to watch a clip</small></div>
           </div>
-          <div class="poster-card wide">
+          <div class="poster-card wide" data-clip="assets/clips/fifa.mp4">
             <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4080220/ff6a3779f1ca83aae8ad3878454f6c11008ea24d/header.jpg" alt="EA Sports FC 27 header art" loading="lazy">
-            <div class="poster-label">FIFA / EA Sports FC 27<small>Played constantly</small></div>
+            <div class="poster-label">FIFA / EA Sports FC 27<small>Played constantly · click to watch a clip</small></div>
           </div>
           <div class="poster-card wide">
-            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172470/60fcaedb88ccf94df30281533d828b86c6ffb9b6/header_alt_assets_5.jpg" alt="Apex Legends header art" loading="lazy">
-            <div class="poster-label">Apex Legends</div>
+            <img src="assets/images/apex-legends.jpg" alt="Apex Legends match summary - squad placed #2, 14 kills" loading="lazy">
+            <div class="poster-label">Apex Legends<small>#2 finish, 14 kills with the squad</small></div>
           </div>
           <div class="poster-card wide">
             <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/208650/header.jpg" alt="Batman: Arkham Knight header art" loading="lazy">
@@ -782,6 +808,14 @@
     </div>
   </footer>
 
+  <!-- CLIP MODAL -->
+  <div id="clip-modal" class="clip-modal">
+    <div class="clip-modal-inner">
+      <button class="clip-modal-close" aria-label="Close">✕ Close</button>
+      <video id="clip-video" controls playsinline></video>
+    </div>
+  </div>
+
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
@@ -790,6 +824,27 @@
     document.querySelectorAll('.skills-grid .skill-card, .projects-grid .project-card').forEach((el, i) => {
       el.style.transitionDelay = `${i * 0.07}s`;
     });
+
+    // Click-to-play clips on interest cards
+    const clipModal = document.getElementById('clip-modal');
+    const clipVideo = document.getElementById('clip-video');
+    function openClip(src) {
+      clipVideo.src = src;
+      clipModal.classList.add('open');
+      clipVideo.play().catch(() => {});
+    }
+    function closeClip() {
+      clipModal.classList.remove('open');
+      clipVideo.pause();
+      clipVideo.removeAttribute('src');
+      clipVideo.load();
+    }
+    document.querySelectorAll('.poster-card[data-clip]').forEach(card => {
+      card.addEventListener('click', () => openClip(card.dataset.clip));
+    });
+    clipModal.addEventListener('click', (e) => { if (e.target === clipModal) closeClip(); });
+    document.querySelector('.clip-modal-close').addEventListener('click', closeClip);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeClip(); });
   </script>
 </body>
 </html>
